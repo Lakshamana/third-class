@@ -1,19 +1,17 @@
 <template>
   <div id="app">
-    <template-component/>
+    <index/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import templateComponent from './components/emptyComponent.vue'
+import index from './components/Index'
+import 'bulma/css/bulma.css'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld,
-    templateComponent
-    
+    index
   }
 }
 </script>
