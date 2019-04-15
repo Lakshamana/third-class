@@ -49,51 +49,41 @@
 
 <script>
 import Card from './Card'
+import axios from 'axios'
 
 export default {
   name: 'Index',
   components: {
     Card
   },
-
-  data: function() {
-    return {
-      cards: [
-      {
-        displayName: 'John Smith',
-        userName: '@johnsmith',
-        description: 'Developer at dev.io',
-        modal: {
-          modalText: 'A Modal Text'
-        }
-      },
-      {
-        displayName: 'John Smith',
-        userName: '@johnsmith',
-        description: 'Developer at dev.io',
-        modal: {
-          modalText: 'A Modal Text'
-        }
-      },
-      {
-        displayName: 'John Smith',
-        userName: '@johnsmith',
-        description: 'Developer at dev.io',
-        modal: {
-          modalText: 'A Modal Text'
-        }
-      },
-      {
-        displayName: 'John Smith',
-        userName: '@johnsmith',
-        description: 'Developer at dev.io',
-        modal: {
-          modalText: 'A Modal Text'
-        }
-      }
-     ]
+  
+  methods: {
+    getUsers() {
+      return axios.get(`https://jsonplaceholder.typicode.com/users`)
+        .then(response => {
+          let cardArray = []
+          response.data.forEach(user => {
+            cardArray.push({
+              displayName: user.name,
+              userName: '@' + user.username,
+              description: `Developer at ${user.company.name}`,
+              modal: {
+                modalText: user.company.catchPhrase
+              }
+            })
+          })
+          this.cards = cardArray.filter((value, idx) => idx < 4)
+        })
     }
-  }
+  },
+
+  created() {
+    this.getUsers()
+  },
+
+  data: () => ({
+    cards: []
+  })
 };
 </script>
 

@@ -3,7 +3,7 @@
     <div class="modal-background"></div>
     <div class="modal-content">
       <div class="box">
-        <div class="content has-text-black has-text-centered">{{modalText}}</div>
+        <div class="content has-text-black has-text-centered">{{modalText}}</div><br>
         <button class="button is-danger" @click="activeModal = false">Fechar modal</button>
       </div>
     </div>
